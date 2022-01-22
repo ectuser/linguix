@@ -1,0 +1,31 @@
+.app {
+  width: 400px;
+  height: 326px;
+  padding: 12px 20px 21px 20px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__top-container {
+    padding: 0 20px;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+
+    &_bold {
+      font-weight: bold;
+    }
+  }
+
+  &__logo {
+    width: 15px;
+    height: 26px;
+    margin-right: 6px;
+  }
+}

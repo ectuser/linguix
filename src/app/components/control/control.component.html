@@ -1,0 +1,14 @@
+<div class="control">
+  <h3 class="control__title">Select the pets you like most — or <span class="control__title_highlighted">all of them!</span></h3>
+
+  <section class="control__bottom">
+    <div class="control__row">
+      <div class="control__text">I love cats</div>
+      <app-switcher [switchControl]="catsControl"></app-switcher>
+    </div>
+    <div class="control__row">
+      <div class="control__text">I love dogs</div>
+      <app-switcher [switchControl]="dogsControl"></app-switcher>
+    </div>
+  </section>
+</div>

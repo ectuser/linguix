@@ -1,0 +1,31 @@
+.control {
+  background: #694EF3;
+  border-radius: 12px;
+  padding: 20px 20.5px;
+  color: #FFFFFF;
+
+  &__title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    width: 71%;
+
+    &_highlighted {
+      color: #48D99E;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6.5px 0;
+  }
+
+  &__text {
+    font-size: 15px;
+  }
+}

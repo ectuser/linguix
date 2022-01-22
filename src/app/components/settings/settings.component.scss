@@ -1,0 +1,17 @@
+.controls {
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8.5px 0;
+  }
+
+  &__text {
+    font-size: 15px;
+
+    &_bold {
+      font-weight: bold;
+    }
+  }
+}

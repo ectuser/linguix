@@ -1,0 +1,30 @@
+{
+  "name": "Great Extension",
+  "version": "1.0",
+  "description": "Build an Extension with Angular",
+  "manifest_version": 2,
+  "permissions": [
+      "activeTab",
+      "webNavigation",
+      "storage"
+  ],
+  "background": {
+      "scripts": [
+          "background.js",
+          "runtime.js"
+      ]
+  },
+  "page_action": {
+      "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["content.js", "runtime.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
