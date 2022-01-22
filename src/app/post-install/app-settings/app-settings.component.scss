@@ -1,0 +1,22 @@
+.app-settings {
+  padding: 148px 95.5px 142px 96px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 110px;
+    }
+  }
+
+  &__text {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 35px;
+  }
+}

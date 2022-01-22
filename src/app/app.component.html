@@ -1,11 +1,18 @@
-<div class="app">
-  <div class="app__top-container">
+<ng-container *ngIf="(contentType$ | async) as contentType">
+  <ng-container *ngIf="contentType === 'popup'; else postInstall">
+    <div class="app">
+      <div class="app__top-container">
 
-    <div class="app__header">
-      <img class="app__logo" src="../assets/icons/Logo.svg" alt="">
-      <h1 class="app__title">Meo<span class="app__title_bold">woof</span></h1>
+        <div class="app__header">
+          <img class="app__logo" src="../assets/icons/Logo.svg" alt="">
+          <h1 class="app__title">Meo<span class="app__title_bold">woof</span></h1>
+        </div>
+        <app-settings></app-settings>
+      </div>
+      <app-control></app-control>
     </div>
-    <app-settings></app-settings>
-  </div>
-  <app-control></app-control>
-</div>
+  </ng-container>
+  <ng-template #postInstall>
+    <app-post-install></app-post-install>
+  </ng-template>
+</ng-container>

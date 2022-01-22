@@ -4,6 +4,7 @@ import {MessageInstance} from "./shared/models/message";
 import {MessageEnum} from "./shared/models/messages";
 import {DestroyService} from "./core/services/destroy.service";
 import {takeUntil} from "rxjs/operators";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -12,24 +13,13 @@ import {takeUntil} from "rxjs/operators";
   providers: [DestroyService]
 })
 export class AppComponent {
+  readonly contentType$ = new BehaviorSubject<'popup' | 'post-install'>('post-install');
+
   constructor(private messageService: MessageService, private destroy$: DestroyService) {}
 
   sendMessage() {
     this.messageService.sendToContent(new MessageInstance(MessageEnum.Log, {hello: 'world'}))
       .pipe(takeUntil(this.destroy$))
       .subscribe();
-      // chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-      //   chrome.tabs.executeScript(
-      //     tabs[0].id!,
-      //     { code: `document.body.style.backgroundColor = '${ this.color }';` }
-      //   );
-      // });
-      // V3 API, uncomment once supported
-      // chrome.scripting.executeScript({
-      //   target: {
-      //     tabId: tabs[0].id!,
-      //   },
-      //   function: () => document.body.style.backgroundColor = this.color
-      // })
   }
 }

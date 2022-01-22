@@ -1,0 +1,96 @@
+.welcome {
+  position: relative;
+  background: #F8F8F8;
+  height: 100%;
+  width: 100%;
+
+  &__icon {
+    height: 54px;
+    width: 30px;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+  }
+
+  &__btn-container {
+    position: absolute;
+    right: 189px;
+    bottom: 60px;
+  }
+
+  &__continue {
+    position: relative;
+    text-align: center;
+    letter-spacing: 0.00398086px;
+    font-size: 18px;
+    font-family: 'Avenir'; // todo - font
+    font-weight: 800;
+    color: white;
+    cursor: pointer;
+
+    background: #000000;
+    border-radius: 10px;
+    padding: 23px 36px 22px 36px;
+    border: none;
+
+    text-decoration: none;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      right: -17px;
+      width: 46px;
+      height: 40px;
+      border-radius: 5px;
+      background: #000000;
+      border: none;
+    }
+    &:before {
+      top: 9px;
+      -webkit-transform: rotate(50deg);
+      -ms-transform: rotate(50deg);
+      transform: rotate(50deg);
+    }
+    &:after {
+      bottom: 9px;
+      -webkit-transform: rotate(-50deg);
+      -ms-transform: rotate(-50deg);
+      transform: rotate(-50deg);
+    }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  padding: 170px 165px 230px 165px;
+
+  &__left {
+    margin-right: 95px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__right, &__left {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive; // todo - font
+
+    &_highlighted {
+      color: #48D99E;
+    }
+  }
+
+  &__text {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+}

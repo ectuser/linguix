@@ -1,4 +1,9 @@
 <div *ngIf="switchControl" class="toggle">
   <input class="toggle__input" [formControl]="switchControl" type="checkbox" >
-  <button class="toggle__button" (click)="toggle()" [ngClass]="{'toggle__button_on': value}" [attr.aria-expanded]="value" ></button>
+  <button
+    class="toggle__button"
+    (click)="toggle()"
+    [ngClass]="classList"
+    [attr.aria-expanded]="value"
+  ></button>
 </div>

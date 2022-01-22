@@ -9,3 +9,13 @@ chrome.runtime.onInstalled.addListener(() => {
     });
   }, { url: [{ urlMatches: 'google.com' }] });
 });
+
+chrome.runtime.onInstalled.addListener(function (object) {
+  chrome.tabs.create({url: chrome.runtime.getURL('index.html')});
+  // if(object.reason === 'install') { // todo - use reason install only
+  //
+  // }
+  // chrome.tabs.create({url: "http://yoursite.com/"}, function (tab) {
+  //   console.log("New tab launched with http://yoursite.com/");
+  // });
+});
