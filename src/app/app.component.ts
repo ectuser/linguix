@@ -5,6 +5,7 @@ import {MessageEnum} from "./shared/models/messages";
 import {DestroyService} from "./core/services/destroy.service";
 import {takeUntil} from "rxjs/operators";
 import {BehaviorSubject} from "rxjs";
+import {ContentTypeService} from "./core/services/content-type.service";
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,13 @@ import {BehaviorSubject} from "rxjs";
   providers: [DestroyService]
 })
 export class AppComponent {
-  readonly contentType$ = new BehaviorSubject<'popup' | 'post-install'>('post-install');
+  readonly contentType$ = this.contentTypeService.contentType$;
 
-  constructor(private messageService: MessageService, private destroy$: DestroyService) {}
+  constructor(
+    private messageService: MessageService,
+    private destroy$: DestroyService,
+    private contentTypeService: ContentTypeService
+  ) {}
 
   sendMessage() {
     this.messageService.sendToContent(new MessageInstance(MessageEnum.Log, {hello: 'world'}))
