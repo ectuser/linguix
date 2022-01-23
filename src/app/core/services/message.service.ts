@@ -19,4 +19,9 @@ export class MessageService {
       })
     )
   }
+
+  sendToBackground(message: MessageInstance): void {
+    console.log('sent');
+    chrome.runtime.sendMessage(message.toObject());
+  }
 }

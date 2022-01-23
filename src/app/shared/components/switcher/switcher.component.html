@@ -1,5 +1,5 @@
-<div *ngIf="switchControl" class="toggle">
-  <input class="toggle__input" [formControl]="switchControl" type="checkbox" >
+<div class="toggle">
+  <input class="toggle__input" [value]="value" type="checkbox" >
   <button
     class="toggle__button"
     (click)="toggle()"

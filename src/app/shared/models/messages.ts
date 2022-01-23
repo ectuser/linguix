@@ -1,3 +1,4 @@
 export enum MessageEnum {
-  Log = "log"
+  Log = 'log',
+  ReloadPages = 'reloadPages'
 }

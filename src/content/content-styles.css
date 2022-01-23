@@ -1,0 +1,47 @@
+.meowoof-ext-highlight {
+  background: #C8B5FC;
+  border-radius: 5px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+.meowoof-ext-highlight__container {
+  width: 400px;
+  height: 270px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.meowoof-ext-highlight__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 23px 11px 20px;
+}
+
+.meowoof-ext-highlight__title {
+  font-size: 18px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.meowoof-ext-highlight__bold {
+  font-weight: bold;
+}
+
+.meowoof-ext-highlight__cross {
+  cursor: pointer;
+}
+
+.meowoof-ext-highlight__image-container {
+  width: 400px;
+  height: 225px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.meowoof-ext-highlight__image {
+  height: 100%;
+  overflow: hidden;
+}
+

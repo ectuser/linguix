@@ -23,6 +23,7 @@
         "<all_urls>"
       ],
       "js": ["content.js", "runtime.js"],
+      "css": ["content-styles.css"],
       "run_at": "document_start",
       "all_frames": true
     }

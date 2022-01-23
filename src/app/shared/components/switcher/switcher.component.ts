@@ -1,19 +1,36 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  forwardRef,
+  Input,
+  OnInit,
+  Optional,
+  Self
+} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from "@angular/forms";
+import {DestroyService} from "../../../core/services/destroy.service";
+import {take, takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-switcher',
   templateUrl: './switcher.component.html',
   styleUrls: ['./switcher.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SwitcherComponent),
+      multi: true
+    }
+  ]
 })
-export class SwitcherComponent {
-  @Input() switchControl?: FormControl;
+export class SwitcherComponent implements OnInit, ControlValueAccessor {
   @Input() size: 's' | 'm' = 's';
 
-  get value(): boolean {
-    return this.switchControl?.value;
-  }
+  value = false;
+
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
   get classList(): Record<string, boolean> {
     const size = `toggle__button_${this.size}`;
@@ -23,9 +40,23 @@ export class SwitcherComponent {
     }
   }
 
+  writeValue(value: boolean): void {
+    this.value = value;
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  ngOnInit(): void {
+
+  }
+
   toggle(): void {
-    if (this.switchControl) {
-      this.switchControl?.patchValue(!this.value);
-    }
+    this.value = !this.value;
+    this.onChange(this.value);
+    // this.control.patchValue(!this.value);
   }
 }
