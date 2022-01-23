@@ -37,7 +37,6 @@ export class SettingsFormService {
         takeUntil(this.unsubscribe$)
       )
       .subscribe((value) => {
-        console.log('change dogs');
         this.likeService.setLikeDogs(value);
       });
   }

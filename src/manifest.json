@@ -1,7 +1,7 @@
 {
-  "name": "Great Extension",
+  "name": "Meowoof",
   "version": "1.0",
-  "description": "Build an Extension with Angular",
+  "description": "A Chrome extension for cats and dogs lovers",
   "manifest_version": 2,
   "permissions": [
     "activeTab",

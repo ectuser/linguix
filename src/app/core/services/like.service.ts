@@ -62,7 +62,6 @@ export class LikeService {
   }
 
   setLikeCats(status: boolean): void {
-    console.log('change cats', status);
     this.likeCatsSubject$.next(status);
   }
 
