@@ -16,7 +16,6 @@ export function startSearch() {
     });
 }
 
-const highlightStyles = '';
 
 function replaceText(preferCats: boolean, preferDogs: boolean) {
   if (preferCats === preferDogs) {
@@ -34,7 +33,7 @@ function replaceText(preferCats: boolean, preferDogs: boolean) {
         if (text) {
           const searchRegex = preferCats ? /dog/gi : /cat/gi;
           const preferredAnimal = preferCats ? 'cat' : 'dog';
-          const replaceValue = `<span style="${highlightStyles}" class="meowoof-ext-highlight">${preferredAnimal}</span>`;
+          const replaceValue = `<span class="meowoof-ext-highlight">${preferredAnimal}</span>`;
           const replacedText = text.replace(searchRegex, replaceValue);
           if (replacedText !== text) {
             const el = document.createElement('span');
