@@ -8,7 +8,6 @@ import {MessageInstance} from "../../shared/models/message";
   providedIn: 'root'
 })
 export class MessageService {
-
   constructor(private tabsService: TabsService) { }
 
   sendToContent(message: MessageInstance): Observable<void> {

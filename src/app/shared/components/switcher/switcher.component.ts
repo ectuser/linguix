@@ -9,7 +9,7 @@ import {FormControl} from "@angular/forms";
 })
 export class SwitcherComponent {
   @Input() switchControl?: FormControl;
-  @Input() size: 's' | 'm' = 'm';
+  @Input() size: 's' | 'm' = 's';
 
   get value(): boolean {
     return this.switchControl?.value;

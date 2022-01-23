@@ -4,18 +4,18 @@
   "description": "Build an Extension with Angular",
   "manifest_version": 2,
   "permissions": [
-      "activeTab",
-      "webNavigation",
-      "storage"
+    "activeTab",
+    "webNavigation",
+    "storage"
   ],
   "background": {
-      "scripts": [
-          "background.js",
-          "runtime.js"
-      ]
+    "scripts": [
+      "background.js",
+      "runtime.js"
+    ]
   },
   "page_action": {
-      "default_popup": "index.html"
+    "default_popup": "index.html"
   },
   "content_scripts": [
     {
