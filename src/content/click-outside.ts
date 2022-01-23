@@ -1,7 +1,6 @@
 export function clickOutsideElementHandle(element: HTMLElement) {
   const outsideClickListener = (event: MouseEvent) => {
-    // @ts-ignore
-    if (!element.contains(event.target)) { // or use: event.target.closest(selector) === null
+    if (!element.contains(event.target as Node)) {
       removeClickListener();
       element.remove();
     }

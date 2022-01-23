@@ -1,16 +1,9 @@
 import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   forwardRef,
   Input,
-  OnInit,
-  Optional,
-  Self
 } from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl} from "@angular/forms";
-import {DestroyService} from "../../../core/services/destroy.service";
-import {take, takeUntil} from "rxjs/operators";
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'app-switcher',
@@ -24,7 +17,7 @@ import {take, takeUntil} from "rxjs/operators";
     }
   ]
 })
-export class SwitcherComponent implements OnInit, ControlValueAccessor {
+export class SwitcherComponent implements ControlValueAccessor {
   @Input() size: 's' | 'm' = 's';
 
   value = false;
@@ -50,13 +43,8 @@ export class SwitcherComponent implements OnInit, ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  ngOnInit(): void {
-
-  }
-
   toggle(): void {
     this.value = !this.value;
     this.onChange(this.value);
-    // this.control.patchValue(!this.value);
   }
 }

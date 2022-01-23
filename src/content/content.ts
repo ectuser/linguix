@@ -1,58 +1,23 @@
-import './content-styles.css';
 import {startSearch} from "./replace-text";
+import {Message} from "../common/models";
+import {Receiver} from "../common/receiver";
+import {StorageService} from "../common/storage.service";
+import {storageKeys} from "../common/consts";
 
-interface Message {
-  messageType: string;
-  data: unknown;
-}
+const matcher: Record<string, (message: Message) => unknown> = {};
 
-class Receiver {
-  private static instance?: Receiver;
-
-  private constructor() {}
-
-  receive() {
-    console.log('receive')
-    chrome.runtime.onMessage.addListener((request: Message) => {
-      console.log('mess', request);
-      const func = matcher[request.messageType];
-      if (func) {
-        func(request);
-      }
-    });
-  }
-
-  static getInstance(): Receiver {
-    return Receiver.instance ?? new Receiver();
-  }
-}
-
-class Controller {
-  private static instance?: Controller;
-
-  private constructor() {}
-
-  static getInstance(): Controller {
-    return Controller.instance ?? new Controller();
-  }
-
-  method1(data: Message) {
-    console.log(data);
-  }
-}
-
-const receiver = Receiver.getInstance();
-const controller = Controller.getInstance();
-
-const matcher: Record<string, (message: Message) => void> = {
-  'log': controller.method1
-};
+const receiver = new Receiver(matcher);
+const storage = StorageService.getInstance();
 
 document.addEventListener('DOMContentLoaded', () => {
-  receiver.receive();
-  insertGoogleFonts();
+  storage.getItems([storageKeys.EXTENSION_ENABLED]).then((data) => {
+    if (data && data[storageKeys.EXTENSION_ENABLED]) {
+      receiver.receive();
+      insertGoogleFonts();
 
-  startSearch();
+      startSearch();
+    }
+  });
 });
 
 function insertGoogleFonts() {

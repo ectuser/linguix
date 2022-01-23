@@ -1,4 +1,4 @@
-<ng-container *ngIf="(contentType$ | async) as contentType">
+<ng-container *ngIf="(contentTypeSubject$ | async) as contentType">
   <ng-container *ngIf="contentType === 'popup'; else postInstall">
     <div class="app">
       <div class="app__top-container">

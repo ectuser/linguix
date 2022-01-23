@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {ContentType} from "../../shared/types/content-type";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ContentTypeService {
   private readonly contentTypeSubject$ = new BehaviorSubject<ContentType>('popup');
 
@@ -12,7 +10,9 @@ export class ContentTypeService {
     return this.contentTypeSubject$.asObservable();
   }
 
-  setContentType(value: ContentType) {
-    this.contentTypeSubject$.next(value);
+  checkQuery(): void {
+    if (window?.location?.href?.includes('openPostInstall')) {
+      this.contentTypeSubject$.next('post-install');
+    }
   }
 }

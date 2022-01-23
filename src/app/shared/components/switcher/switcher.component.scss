@@ -31,10 +31,6 @@
       border: none;
     }
 
-    //&:active::after {
-    //  padding-right: 0.8em;
-    //}
-
     &::after {
       left: 0;
       position: relative;
@@ -55,15 +51,8 @@
       &::after {
         left: 60%;
       }
-
-      //&:active::after {
-      //  margin-left: -0.8em;
-      //}
     }
   }
 
 
 }
-//.toggle-btn.toggle-btn-on:active {
-//  box-shadow: none;
-//}

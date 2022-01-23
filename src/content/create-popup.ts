@@ -1,13 +1,25 @@
 import {crossIcon} from "./images/cross";
-import {deleteContainer} from "../common/utils";
 import {clickOutsideElementHandle} from "./click-outside";
+import {scrollUtil} from "./scroll-util";
+import {getImages} from "./api";
 
-export function createPopup(preferCats: boolean): HTMLDivElement {
+export function deleteContainers(): void {
+  const containers = document.querySelectorAll('.meowoof-ext-highlight__container');
+  containers.forEach((container) => {
+    container.remove();
+  });
+  document.body.style.position = '';
+}
+
+export function createPopup(preferCats: boolean, event: PointerEvent): HTMLDivElement {
+  document.body.style.position = 'relative';
+  const {x, y} = scrollUtil(event);
+
   const container = document.createElement('div');
   container.className = 'meowoof-ext-highlight__container';
-  container.style.position = 'fixed';
-  container.style.top = '50%';
-  container.style.left = '50%';
+  container.style.position = 'absolute';
+  container.style.top = y + 'px';
+  container.style.left = x + 'px';
 
   const header = createHeader(preferCats);
   const image = createImage(preferCats);
@@ -44,7 +56,7 @@ function createCross(): HTMLDivElement {
   cross.className = 'meowoof-ext-highlight__cross';
   cross.innerHTML = crossIcon;
 
-  cross.addEventListener('click', deleteContainer);
+  cross.addEventListener('click', deleteContainers);
 
   return cross;
 }
@@ -84,9 +96,9 @@ interface DogImageResponse {
 
 function loadImage(preferCat: boolean): Promise<CatImageResponse | DogImageResponse> {
   const catUrl = 'https://api.thecatapi.com/v1/images/search';
-  const dogUrl = 'https://cat.ceo/api/breeds/image/random';
+  const dogUrl = 'https://dog.ceo/api/breeds/image/random';
 
   const url = preferCat ? catUrl : dogUrl;
 
-  return fetch(url).then((res) => res.json())
+  return getImages(url);
 }

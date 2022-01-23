@@ -1,7 +1,6 @@
 import {storageKeys} from "../common/consts";
-import {createPopup} from "./create-popup";
+import {createPopup, deleteContainers} from "./create-popup";
 import {StorageService} from "../common/storage.service";
-import {deleteContainer} from "../common/utils";
 
 const storageService = StorageService.getInstance();
 
@@ -51,12 +50,14 @@ function replaceText(preferCats: boolean, preferDogs: boolean) {
 function addClickListeners() {
   const clickableElements = document.querySelectorAll('span.meowoof-ext-highlight');
   clickableElements.forEach((el) => {
-    el.addEventListener('click', onHighlightedClick);
+    el.addEventListener('click', function(event) {
+      onHighlightedClick(event as PointerEvent);
+    });
   });
 }
 
-function onHighlightedClick(event: Event) {
-  deleteContainer();
+function onHighlightedClick(event: PointerEvent) {
+  deleteContainers();
 
   storageService.getItems([storageKeys.LIKE_CATS, storageKeys.LIKE_DOGS]).then((data) => {
     if (
@@ -72,7 +73,7 @@ function onHighlightedClick(event: Event) {
     const likeDogs = data[storageKeys.LIKE_DOGS] as boolean;
     const preferCats = likeCats && !likeDogs;
 
-    const popup = createPopup(preferCats);
+    const popup = createPopup(preferCats, event);
     document.body.append(popup);
   });
 }

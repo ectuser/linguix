@@ -15,7 +15,6 @@ export class SettingsFormService {
     this.likeService.likeEntities
       .pipe(take(1))
       .subscribe(({likeCats, likeDogs}) => {
-        console.log(likeCats, likeDogs)
         this.catsControl.patchValue(likeCats, {emitEvent: false});
         this.dogsControl.patchValue(likeDogs, {emitEvent: false});
         this.cdr.detectChanges();
@@ -38,6 +37,7 @@ export class SettingsFormService {
         takeUntil(this.unsubscribe$)
       )
       .subscribe((value) => {
+        console.log('change dogs');
         this.likeService.setLikeDogs(value);
       });
   }
