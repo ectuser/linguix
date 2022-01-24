@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Injectable} from '@angular/core';
 import {LikeService} from "./like.service";
 import {FormControl} from "@angular/forms";
 import {distinctUntilChanged, filter, take, takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import {MonoTypeOperatorFunction, Subject} from "rxjs";
 
 @Injectable()
 export class SettingsFormService {
@@ -21,21 +21,13 @@ export class SettingsFormService {
       });
 
     this.catsControl.valueChanges
-      .pipe(
-        filter((value) => value !== undefined),
-        distinctUntilChanged((a, b) => a === b),
-        takeUntil(this.unsubscribe$)
-      )
+      .pipe(optimizedControlChanged(this.unsubscribe$))
       .subscribe((value) => {
         this.likeService.setLikeCats(value);
       });
 
     this.dogsControl.valueChanges
-      .pipe(
-        filter((value) => value !== undefined),
-        distinctUntilChanged((a, b) => a === b),
-        takeUntil(this.unsubscribe$)
-      )
+      .pipe(optimizedControlChanged(this.unsubscribe$))
       .subscribe((value) => {
         this.likeService.setLikeDogs(value);
       });
@@ -45,4 +37,12 @@ export class SettingsFormService {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
+}
+
+function optimizedControlChanged<T>(unsubscribe$: Subject<unknown>): MonoTypeOperatorFunction<T> {
+  return (input$) => input$.pipe(
+    filter((value) => value !== undefined),
+    distinctUntilChanged((a, b) => a === b),
+    takeUntil(unsubscribe$)
+  );
 }
